@@ -6,26 +6,38 @@
 in this app we can search about any book you want to see it .
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+we follow the lab instactions and the steps from trello 
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+we use javascript and ejs language 
+nodemon
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
+1. we do the folders and js file and ejs files
+2. try to put a search form 
+3. write the basic command in js
+4. do test for the webside
+5. write a constracter function
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
-
-## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
 
-Number and name of feature: ________________________________
+Number and name of feature: ____________the repo folder and file and the basic command____________________
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: ___1.5___
 
-Start time: _____
+Start time: _2____
 
-Finish time: _____
+Finish time: ___3:30__
 
-Actual time needed to complete: _____
+Actual time needed to complete: _1.5____
+
+
+Number and name of feature: ____________do the constracter function and render the data ____________________
+
+Estimate of time needed to complete: ___2___
+
+Start time: _4____
+
+Finish time: ___untill now__
+
+Actual time needed to complete: _until now____

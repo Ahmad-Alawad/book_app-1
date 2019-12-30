@@ -5,6 +5,6 @@ html{
 fieldset{
     color: cornsilk;
 }
-.submit{
-    
+.submit:hover{
+    transform: scale(1.5);
 }

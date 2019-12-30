@@ -2,16 +2,14 @@
 
 const express = require('express');
 const superagent = require('superagent');
-
 const app = express();
-
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-// app.use(express.urlencoded());
+app.use(express.urlencoded());
 
 app.use('/public', express.static('public'));
-
 app.set('view engine', 'ejs');
+
 
 app.get('/', (req, res) => {
     res.status(200).send('EJS Working !');
@@ -31,13 +29,13 @@ app.get('/home', (req, res) => {
 app.get('/books', bookHandler);
 function Book(data) {
     this.title = data.volumeInfo.title;
-    // this.image = data.image;
+    this.image = data.image;
     this.authors = data.volumeInfo.authors;
     this.description =data.volumeInfo.description;
 
 }
 function bookHandler(res,req) {
-    let title = req.query.title;
+    let title = require.query.title;
     // let title = data.volumeInfo.title;
     // let authorName = data.volumeInfo.authors;
     // let description = data.volumeInfo.description;
@@ -53,9 +51,10 @@ function bookHandler(res,req) {
         
     }
     function getBook(title) {
-        const url = `https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`;
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${title}`;
+        // we can do if statment to search by title or author but we test her
         return superagent.get(url)
-        // console.log(url)
+        console.log(url)
         .then(data => {  
             console.log(data); 
             return data.body.items;

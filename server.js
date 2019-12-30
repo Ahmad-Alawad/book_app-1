@@ -30,30 +30,35 @@ app.get('/home', (req, res) => {
 });
 app.get('/books', bookHandler);
 function Book(data) {
-    this.title = data.title;
-    this.image = data.image;
-    this.authorName = data.authorName;
-    this.description = data.description;
+    this.title = data.volumeInfo.title;
+    // this.image = data.image;
+    this.authors = data.volumeInfo.authors;
+    this.description =data.volumeInfo.description;
 
 }
-function bookHandler(data) {
-    let title = data.volumeInfo.title;
-    let authorName = data.volumeInfo.authors;
-    let description = data.volumeInfo.description;
-    let image = data.volumeInfo.imageLinkes.thumbnail;
-    getBook(title, authorName, description, image)
-        .then((data) => {
-            response.status(200).send(data);
-        });
-
-}
-function getBook(title, authorName, description, image) {
-    const url = `https://www.googleapis.com/books/v1/volumes?q=amman`;
-    return superagent.get(url)
-        .then(data => {
-            let book = new Book(title, authorName, description, image);
+function bookHandler(res,req) {
+    let title = req.query.title;
+    // let title = data.volumeInfo.title;
+    // let authorName = data.volumeInfo.authors;
+    // let description = data.volumeInfo.description;
+    // let image = data.volumeInfo.imageLinkes.thumbnail;
+    getBook(title)
+        .then((books) => {
+            let book = books.map((data) => new Book(data));
             return book;
-            // res.render('./pages/searches/search', { 'books': data.body.items })
+            // response.status(200).send(data);
+            // console.log('hiiiiiiiii' ,data.body.items.volumeInfo)
+        });
+        res.render('pages/searches/show', { 'books':book})
+        
+    }
+    function getBook(title) {
+        const url = `https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`;
+        return superagent.get(url)
+        // console.log(url)
+        .then(data => {  
+            console.log(data); 
+            return data.body.items;
         });
 
 }

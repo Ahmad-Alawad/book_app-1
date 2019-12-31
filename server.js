@@ -40,7 +40,9 @@ app.post('/searches',(req, res) => {
             res.render('pages/searches/show', { books: book });
         })
     });
+
         function Book(data) {
+            // The if statment inside this function from the demo // but it's really amazing and we learn sth new 
             this.title = data.volumeInfo.title ? data.volumeInfo.title : "No Title Available";
             this.imgUrl = (data.volumeInfo.imageLinks && data.volumeInfo.imageLinks.thumbnail) ? data.volumeInfo.imageLinks.thumbnail : "https://i.imgur.com/J5LVHEL.jpg";
             this.authors = data.volumeInfo.authors ? data.volumeInfo.authors : "No Authors";

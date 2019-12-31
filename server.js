@@ -1,10 +1,12 @@
 'use strict';
+require('dotenv').config();
 
 const express = require('express');
 const superagent = require('superagent');
 const app = express();
-require('dotenv').config();
 const PORT = process.env.PORT || 3000;
+const pg = require('pg');
+const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/public', express.static('public'));
@@ -24,12 +26,7 @@ app.get('/', (req, res) => {
 
 
 });
-// app.post('/home', (req, res) => {
 
-//     res.render('pages/index')
-
-
-// });
 app.post('/searches',(req, res) => {
 
     const url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.selectBy}+${req.body.input}`;
@@ -56,6 +53,7 @@ app.post('/searches',(req, res) => {
 app.get('*', (req, res) => {
     res.status(404).send('not found');
 });
-app.listen(PORT, () => {
-    console.log('Working!!!!!!!');
-});
+client.connect()
+.then( () => {
+    app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+})

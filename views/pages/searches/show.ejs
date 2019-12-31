@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="../../public/styles/modules.css" type="text/css">
     <title>books</title>
 </head>
 
@@ -10,10 +11,11 @@
     <ul>
         <% books.forEach(book => { %>
             <li> 
-                <p><%= book.volumeInfo.title %></p>
-                <img src="<%=  book.volumeInfo.imageLinkes.thumbnail %>">
-                <p> <%= data.volumeInfo.description %> </p>
-                <p> <% data.volumeInfo.authors %></p>
+                <p><%= book.title %></p>
+
+                <img src="<%= book.imgUrl %>"> 
+                <p><%= book.authors %></p>
+                 <p><%= book.desc %></p>
             </li>
         <% }) %>
     </ul>

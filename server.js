@@ -5,65 +5,54 @@ const superagent = require('superagent');
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/public', express.static('public'));
 app.set('view engine', 'ejs');
 
 
-app.get('/', (req, res) => {
-    res.status(200).send('EJS Working !');
-});
-// app.get('/home', (req, res) => {
+
+// app.get('/', (req, res) => {
 
 //     res.sendFile('./index.ejs', { root: './views/pages' });
 
 
 // });
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
 
     res.render('pages/index')
 
 
 });
-app.get('/books', bookHandler);
-function Book(data) {
-    this.title = data.volumeInfo.title;
-    this.image = data.image;
-    this.authors = data.volumeInfo.authors;
-    this.description =data.volumeInfo.description;
+// app.post('/home', (req, res) => {
 
-}
-function bookHandler(res,req) {
-    let title = require.query.title;
-    // let title = data.volumeInfo.title;
-    // let authorName = data.volumeInfo.authors;
-    // let description = data.volumeInfo.description;
-    // let image = data.volumeInfo.imageLinkes.thumbnail;
-    getBook(title)
-        .then((books) => {
-            let book = books.map((data) => new Book(data));
-            return book;
-            // response.status(200).send(data);
-            // console.log('hiiiiiiiii' ,data.body.items.volumeInfo)
-        });
-        res.render('pages/searches/show', { 'books':book})
-        
-    }
-    function getBook(title) {
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${title}`;
-        // we can do if statment to search by title or author but we test her
-        return superagent.get(url)
-        console.log(url)
-        .then(data => {  
-            console.log(data); 
-            return data.body.items;
-        });
+//     res.render('pages/index')
 
-}
+
+// });
+app.post('/searches',(req, res) => {
+
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.selectBy}+${req.body.input}`;
+    superagent.get(url)
+        .then(data => {
+            let element = data.body.items;
+            let book = element.map(data => new Book(data));
+            res.render('pages/searches/show', { books: book });
+        })
+    });
+        function Book(data) {
+            this.title = data.volumeInfo.title ? data.volumeInfo.title : "No Title Available";
+            this.imgUrl = (data.volumeInfo.imageLinks && data.volumeInfo.imageLinks.thumbnail) ? data.volumeInfo.imageLinks.thumbnail : "https://i.imgur.com/J5LVHEL.jpg";
+            this.authors = data.volumeInfo.authors ? data.volumeInfo.authors : "No Authors";
+            this.desc = data.volumeInfo.description ? data.volumeInfo.description : "No description available";
+        }
+
+
+
+
 
 app.get('*', (req, res) => {
-    res.status(404).send('Not Found');
+    res.status(404).send('not found');
 });
 app.listen(PORT, () => {
     console.log('Working!!!!!!!');

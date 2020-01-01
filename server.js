@@ -1,25 +1,16 @@
 'use strict';
 require('dotenv').config();
-
 const express = require('express');
 const superagent = require('superagent');
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.urlencoded({ extended: true }));
-
 app.use('/public', express.static('public'));
 app.set('view engine', 'ejs');
 
-
-
-// app.get('/', (req, res) => {
-
-//     res.sendFile('./index.ejs', { root: './views/pages' });
-
-
-// });
 app.get('/', (req, res) => {
 
     res.render('pages/index')
@@ -56,4 +47,6 @@ app.get('*', (req, res) => {
 client.connect()
 .then( () => {
     app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
 });
+

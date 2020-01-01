@@ -1,10 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Acme|Comfortaa|Lobster&display=swap');
+
+@media(min-width: 768px) {
 html{
     color: cornsilk;
-    background-color: rgb(110, 73, 73);
+    background-color: rgb(142, 206, 112);
 }
 fieldset{
     color: cornsilk;
 }
 .submit:hover{
     transform: scale(1.5);
+}
+ul{
+    margin: auto;
+}
+.continer{
+
+    text-align: center;
+    list-style: none;
+    box-shadow: 0 10px 6px -6px #777;
+    border: 3px inset lightGray;
+    border-radius: 10%;
+    padding: 120px;
+    width: 420px;
+    height: 500px;
+    margin: 20px 50px 20px 50px;
+    background-color: rgb(0, 17, 17);
+    font-family: 'Comfortaa', cursive;
+font-size: 20px;
+
+}
+.title{
+    padding-top: 25px;
+    background-color: rgb(17, 17, 17);
+    color: rgb(206, 119, 13);
+    text-align: center;
+    height: 80px;
+    font-family: 'Lobster', cursive;
+    font-size: 48px;
+
+}
+img{
+    width: 200px;
+    height: 250px;
+}
+}
+@media(min-width: 960px) {
+    ul {
+        background-color: rgba(194, 131, 15, 0.541);
+    }
 }

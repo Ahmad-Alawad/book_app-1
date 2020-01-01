@@ -1,10 +1,23 @@
 .text{
     text-align: center;
-    background: rgb(138, 102, 55);
+    background: rgb(179, 124, 52);
     color: white;
     padding: 30px;
     width: 70%;
     height: 100px;
     overflow: auto;
     border: 1px solid #ccc;
+}
+@media(min-width: 481px) and (max-width: 767px){
+    .text{
+        text-align: center;
+        background: rgb(179, 124, 52);
+        color: white;
+        padding: 30px;
+        width: 70%;
+        height: 100px;
+        overflow: auto;
+        margin-left: 2pc;
+        border: 1px solid #ccc;
+    } 
 }

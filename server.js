@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 3000;
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.urlencoded({ extended: true }));
-
 app.use('/public', express.static('public'));
 app.set('view engine', 'ejs');
 

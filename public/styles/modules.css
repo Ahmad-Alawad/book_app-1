@@ -76,10 +76,10 @@ ul{
     box-shadow: 0 10px 6px -6px #777;
     border: 3px inset lightGray;
     border-radius: 10%;
-    padding: 120px;
-    width: 420px;
-    height: 500px;
-    margin: 20px 50px 20px 50px;
+    padding: 50px;
+    width: 60%;
+    height: 100%;
+    margin: 20px 50px 20px 12pc;
     background-color: rgba(0, 0, 0, 0.815);
     font-family: 'Comfortaa', cursive;
 font-size: 20px;
@@ -100,7 +100,7 @@ img{
     height: 250px;
 }
 }
-@media (min-width: 481px) and (max-width: 767px) {
+@media  (max-width: 768px) {
     html{
         color: cornsilk;
         background-color: rgb(96, 146, 72);

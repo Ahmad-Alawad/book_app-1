@@ -81,7 +81,7 @@ function addBookById( req ,res){
 app.get('*', (req, res) => {
     res.status(404).send('not found');
 });
-client.connect()
-.then( () => {
-    app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
-});
+// client.connect()
+// .then( () => {
+//     app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+// });

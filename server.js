@@ -40,7 +40,7 @@ function getAllBooks(req ,res){
     let SQL = `SELECT * FROM books ;`;
     client.query(SQL)
     .then( data => {
-        res.render('index' , {books : data.rows});
+        res.render('pages/index' , {books : data.rows});
     }).catch(err => handleError(err));
 }
 // function four
